@@ -1,7 +1,7 @@
-$(function(){
+(function(win, doc, $){
 
     var player;
-    var videoID = "XfkXW49bXfo";
+    var videoID = "SnXkhkEvNIM";
 
     function fGetScript() {
         $.ajax({
@@ -71,7 +71,7 @@ $(function(){
 
     function play() {
         dbg("play");
-        player.playVide();
+        player.playVideo();
         $(this).html("一時停止");
     }
 
@@ -111,4 +111,4 @@ $(function(){
     }
 
 
-});
+})(window, document, $);
