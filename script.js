@@ -7,23 +7,6 @@
     script.src = 'https://www.youtube.com/iframe_api';
     document.body.appendChild(script);
 
-/*
-    // iframe player api をロード
-    function fGetScript() {
-        $.ajax({
-            url: "http://www.youtube.com/player_api/",
-            dataType: "script",
-            success: function(data) {
-                console.log("done");
-            },
-            error: function(xhr, status, thrown) {
-                console.log(xhr);
-                fGetScript();
-            }
-        });
-    }
-    fGetScript();
-    */
     // playerの準備完了時
     win.onYouTubeIframeAPIReady = function() {
         console.log("onYouTubeIframeAPIReady");
