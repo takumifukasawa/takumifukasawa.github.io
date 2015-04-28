@@ -25,3 +25,9 @@ function onYoutubeIframeAPIReady() {
         }
     });
 }
+
+function onPlayerReady() {
+    $(".youtube_play").click(function(){
+        player.playVideo();
+    });
+}
