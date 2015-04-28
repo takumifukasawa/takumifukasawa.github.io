@@ -1,46 +1,80 @@
-var script = document.createElement('script');
-script.src = "https://www.youtube.com/iframe_api";
-console.log(script);
+$(function(){
 
-var firstScript = document.getElementsByTagName('script')[0];
-firstScript.parentNode.insertBefore(script, firstScript);
-console.log(firstScript);
+    var player;
+    var videoID = "XfkXW49bXfo";
 
-var player;
-var vid = 'fzzjgBAaWZw';
-
-function onYoutubeIframeAPIReady() {
-    console.log("youtube load...");
-    player = new YT.player( 'player', { 
-        width: '700',
-        height: '500',
-        videoId: vid,
-        playerVars: {
-            'showinfo':0,
-            'autohide':1,
-            'controls': 0,
-            'rel': 0,
-            'loop': 1
-        },
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-function onPlayerReady(event) {
-    /*
-    $(".youtube_play").click(function(){
-        player.playVideo();
-        console.log("play");
-    });
-    */
-    event.target.playVideo();
-}
-
-function onPlayerStateChange(event) {
-    if(event.data == YT.PlayerState.ENDED) {
-        alert('finish');
+    function fGetScript() {
+        $.ajax({
+            url: "http://www.youtube.com/player_api/",
+            dataType: "script",
+            success: function(data) {
+                dbg("done");
+            },
+            error: function(xhr, status, thrown) {
+                dbg(xhr);
+                fGetScript();
+            }
+        });
     }
-}
+    fGetScript();
+
+    window.onYouTubeIframeAPIReady = function() {
+        dbg("onYouTubeIframeAPIReady");
+        loadPlayer(videoIO);
+    };
+
+    function loadPlayer(videoID) {
+        dbg("loadPlayer(" + videoID + ")");
+        if(!player) {
+            player = new YT.Player('player', {
+                    width: '640',
+                    height: '390',
+                    videoId: videoID,
+                    events: {
+                        "onReady": onPlayerReady,
+                        "onStateChange": onPlayerStateChange,
+                    },
+                    playerVals: {
+                        "rel": 0,
+                        "showInfo": 0,
+                        "controls": 1
+                    }
+                }
+            );
+        } else {
+            player.loadVideoByID(videoID);
+        }
+    }
+    
+    function onPlayerReady(event) {
+        dbg("onPlayerReady");
+    }
+
+    function onPlayerStateChange(event) {
+        dbg("PlayerState:" + event.data);
+        switch(event.data) {
+            case YT.PlayerState.ENDED:
+            case YT.PlayerState.PAUSED:
+            case YT.PlayerState.CUED:
+                $("#play").html("再生");
+                break;
+            case YT.PlayerState.PLAYING:
+            case YT.PlayerState.BUFFERING:
+                $("#play").html("一時停止");
+                break;
+            default:
+                $("#play").html("再生");
+                break;
+        }
+
+    }
+
+    function dbg(str) {
+        $("#debuglog").val(str + "\n" + $("#debuglog").val());
+        if(window.console && window.console.log) {
+         console.log(str);
+        }
+    }
+
+
+});
