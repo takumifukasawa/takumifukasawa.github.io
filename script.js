@@ -98,7 +98,11 @@
         }
     });
 
-    $("#stop").click(function() {
+    $("stop").click(function() {
+        stop();
+    });
+
+    $("#seek").click(function() {
         player.seekTo(30, true);
         play();
     });
