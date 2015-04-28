@@ -1,8 +1,7 @@
-
 var script = document.createElement('script');
 script.src = "//www.youtube.com/iframe_api";
 
-var firstScript = document.getElementByTagName('script')[0];
+var firstScript = document.getElementsByTagName('script')[0];
 firstScript.parentNode.insertBefore(script, firstScript);
 
 var player;
