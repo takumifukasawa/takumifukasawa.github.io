@@ -1,8 +1,10 @@
 var script = document.createElement('script');
 script.src = "https://www.youtube.com/iframe_api";
 console.log(script);
+
 var firstScript = document.getElementsByTagName('script')[0];
 firstScript.parentNode.insertBefore(script, firstScript);
+console.log(firstScript);
 
 var player;
 var vid = 'fzzjgBAaWZw';
