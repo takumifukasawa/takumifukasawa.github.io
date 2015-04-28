@@ -8,10 +8,10 @@
             url: "http://www.youtube.com/player_api/",
             dataType: "script",
             success: function(data) {
-                dbg("done");
+                console.log("done");
             },
             error: function(xhr, status, thrown) {
-                dbg(xhr);
+                console.log(xhr);
                 fGetScript();
             }
         });
@@ -19,12 +19,12 @@
     fGetScript();
 
     window.onYouTubeIframeAPIReady = function() {
-        dbg("onYouTubeIframeAPIReady");
+        console.log("onYouTubeIframeAPIReady");
         loadPlayer(videoID);
     };
 
     function loadPlayer(videoID) {
-        dbg("loadPlayer(" + videoID + ")");
+        console.log("loadPlayer(" + videoID + ")");
         if(!player) {
             player = new YT.Player('player', {
                     width: '640',
@@ -47,11 +47,11 @@
     }
     
     function onPlayerReady(event) {
-        dbg("onPlayerReady");
+        console.log("onPlayerReady");
     }
 
     function onPlayerStateChange(event) {
-        dbg("PlayerState:" + event.data);
+        console.log("PlayerState:" + event.data);
         switch(event.data) {
             case YT.PlayerState.ENDED:
             case YT.PlayerState.PAUSED:
@@ -70,19 +70,19 @@
     }
 
     function play() {
-        dbg("play");
+        console.log("play");
         player.playVideo();
         $(this).html("一時停止");
     }
 
     function pause() {
-        dbg("pause");
+        console.log("pause");
         player.pauseVideo();
         $(this).html("再生");
     }
 
     function stop() {
-        dbg("stop");
+        console.log("stop");
         player.stopVieo();
         player.cueVideoById(videoID);
         $(this).html("一時停止");
@@ -90,7 +90,7 @@
 
     $("#play").click(function() {
         var label = $(this).html();
-        dbg("play");
+        console.log("play");
         if(label == "再生") {
             play();
         } else {
@@ -98,7 +98,7 @@
         }
     });
 
-    $("stop").click(function() {
+    $("#stop").click(function() {
         stop();
     });
 
@@ -106,13 +106,5 @@
         player.seekTo(30, true);
         play();
     });
-
-    function dbg(str) {
-        $("#debuglog").val(str + "\n" + $("#debuglog").val());
-        if(window.console && window.console.log) {
-         console.log(str);
-        }
-    }
-
 
 })(window, document, $);
