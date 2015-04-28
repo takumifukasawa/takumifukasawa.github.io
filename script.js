@@ -7,21 +7,21 @@ firstScript.parentNode.insertBefore(script, firstScript);
 var player;
 var vid = 'fzzjgBAaWZw';
 
-function onYoutubeIframe() {
+function onYoutubeIframeAPIReady() {
     player = new YT.player( 'player', { 
-                            width: '100%',
-                            height: '500',
-                            videoId: vid,
-                            playerVars: {
-                                'showinfo':0,
-                                'autohide':1,
-                                'controls': 0,
-                                'rel': 0,
-                                'loop': 1
-                            },
-                            events: {
-                                'onReady': onPlayerReady,
-                                'onStateChange': onPlayerStateChange
-                            }
+        width: '100%',
+        height: '500',
+        videoId: vid,
+        playerVars: {
+            'showinfo':0,
+            'autohide':1,
+            'controls': 0,
+            'rel': 0,
+            'loop': 1
+        },
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
     });
 }
