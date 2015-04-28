@@ -9,7 +9,7 @@ var vid = 'fzzjgBAaWZw';
 
 function onYoutubeIframeAPIReady() {
     player = new YT.player( 'player', { 
-        width: '100%',
+        width: '700',
         height: '500',
         videoId: vid,
         playerVars: {
