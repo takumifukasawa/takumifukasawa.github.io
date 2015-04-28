@@ -2,7 +2,8 @@
 
     var player;
     var videoID = "SnXkhkEvNIM";
-
+/*
+    // iframe player api をロード
     function fGetScript() {
         $.ajax({
             url: "http://www.youtube.com/player_api/",
@@ -17,12 +18,14 @@
         });
     }
     fGetScript();
-
+    */
+    // playerの準備完了時
     win.onYouTubeIframeAPIReady = function() {
         console.log("onYouTubeIframeAPIReady");
         loadPlayer(videoID);
     };
 
+    // playerの生成
     function loadPlayer(videoID) {
         console.log("loadPlayer(" + videoID + ")");
         if(!player) {
@@ -45,11 +48,13 @@
             player.loadVideoByID(videoID);
         }
     }
-    
+
+    // player の準備完了時
     function onPlayerReady(event) {
         console.log("onPlayerReady");
     }
 
+    // playerのstatusが変更される度に発生
     function onPlayerStateChange(event) {
         console.log("PlayerState:" + event.data);
         switch(event.data) {
@@ -74,13 +79,11 @@
         player.playVideo();
         $(this).html("再生");
     }
-
     function pause() {
         console.log("pause");
         player.pauseVideo();
         $(this).html("一時停止");
     }
-
     function stop() {
         console.log("stop");
         player.stopVideo();
@@ -97,11 +100,9 @@
             pause();
         }
     });
-
     $("#stop").click(function() {
         stop();
     });
-
     $("#seek").click(function() {
         player.seekTo(30, true);
         play();
