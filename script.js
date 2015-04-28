@@ -18,7 +18,7 @@
     }
     fGetScript();
 
-    window.onYouTubeIframeAPIReady = function() {
+    win.onYouTubeIframeAPIReady = function() {
         console.log("onYouTubeIframeAPIReady");
         loadPlayer(videoID);
     };
