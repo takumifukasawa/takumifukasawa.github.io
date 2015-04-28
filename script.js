@@ -24,6 +24,5 @@ function onYoutubeIframe() {
                                 'onReady': onPlayerReady,
                                 'onStateChange': onPlayerStateChange
                             }
-        });
-    }
-};
+    });
+}
