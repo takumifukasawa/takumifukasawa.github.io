@@ -72,18 +72,18 @@
     function play() {
         console.log("play");
         player.playVideo();
-        $(this).html("一時停止");
+        $(this).html("再生");
     }
 
     function pause() {
         console.log("pause");
         player.pauseVideo();
-        $(this).html("再生");
+        $(this).html("一時停止");
     }
 
     function stop() {
         console.log("stop");
-        player.stopVieo();
+        player.stopVideo();
         player.cueVideoById(videoID);
         $(this).html("一時停止");
     }
