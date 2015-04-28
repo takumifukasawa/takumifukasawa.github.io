@@ -20,7 +20,7 @@ $(function(){
 
     window.onYouTubeIframeAPIReady = function() {
         dbg("onYouTubeIframeAPIReady");
-        loadPlayer(videoIO);
+        loadPlayer(videoID);
     };
 
     function loadPlayer(videoID) {
