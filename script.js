@@ -1,5 +1,5 @@
 var script = document.createElement('script');
-script.src = "http://www.youtube.com/iframe_api";
+script.src = "https://www.youtube.com/iframe_api";
 
 var firstScript = document.getElementsByTagName('script')[0];
 firstScript.parentNode.insertBefore(script, firstScript);
@@ -26,13 +26,18 @@ function onYoutubeIframeAPIReady() {
     });
 }
 
-function onPlayerReady() {
+function onPlayerReady(event) {
+    /*
     $(".youtube_play").click(function(){
         player.playVideo();
         console.log("play");
     });
+    */
+    event.target.playVideo();
 }
 
-(function(){
-    onyoutubeIframeAPIReady();
-})();
+function onPlayerStateChange(event) {
+    if(event.data == YT.PlayerState.ENDED) {
+        alert('finish');
+    }
+}
