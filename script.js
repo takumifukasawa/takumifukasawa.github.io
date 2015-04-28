@@ -1,6 +1,6 @@
 var script = document.createElement('script');
 script.src = "https://www.youtube.com/iframe_api";
-
+console.log(script);
 var firstScript = document.getElementsByTagName('script')[0];
 firstScript.parentNode.insertBefore(script, firstScript);
 
@@ -8,6 +8,7 @@ var player;
 var vid = 'fzzjgBAaWZw';
 
 function onYoutubeIframeAPIReady() {
+    console.log("youtube load...");
     player = new YT.player( 'player', { 
         width: '700',
         height: '500',
