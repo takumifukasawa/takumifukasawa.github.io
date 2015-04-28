@@ -29,5 +29,10 @@ function onYoutubeIframeAPIReady() {
 function onPlayerReady() {
     $(".youtube_play").click(function(){
         player.playVideo();
+        console.log("play");
     });
 }
+
+(function(){
+    onyoutubeIframeAPIReady();
+})();
