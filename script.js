@@ -69,6 +69,40 @@ $(function(){
 
     }
 
+    function play() {
+        dbg("play");
+        player.playVide();
+        $(this).html("一時停止");
+    }
+
+    function pause() {
+        dbg("pause");
+        player.pauseVideo();
+        $(this).html("再生");
+    }
+
+    function stop() {
+        dbg("stop");
+        player.stopVieo();
+        player.cueVideoById(videoID);
+        $(this).html("一時停止");
+    }
+
+    $("#play").click(function() {
+        var label = $(this).html();
+        dbg("play");
+        if(label == "再生") {
+            play();
+        } else {
+            pause();
+        }
+    });
+
+    $("#stop").click(function() {
+        player.seekTo(30, true);
+        play();
+    });
+
     function dbg(str) {
         $("#debuglog").val(str + "\n" + $("#debuglog").val());
         if(window.console && window.console.log) {
