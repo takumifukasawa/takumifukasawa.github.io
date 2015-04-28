@@ -2,6 +2,11 @@
 
     var player;
     var videoID = "SnXkhkEvNIM";
+
+    var script = document.createElement('script');
+    script.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(script);
+
 /*
     // iframe player api をロード
     function fGetScript() {
